@@ -1,8 +1,19 @@
 class Dice:
     def __init__(self, face):
         self.face = face
-    def show_top(self):
-        print self.face[0]
+    def top(self):
+        return self.face[0]
+    def bottom(self):
+        return self.face[5]
+    def right(self):
+        return self.face[2]
+    def left(self):
+        return self.face[3]
+    def front(self):
+        return self.face[1]
+    def back(self):
+        return self.face[4]
+        
     def move_east(self):
         tmp = self.face[2]
         self.face[2] = self.face[0]
@@ -27,6 +38,12 @@ class Dice:
         self.face[0] = self.face[1]
         self.face[1] = self.face[5]
         self.face[5] = tmp
+    def spin(self):
+        tmp = self.face[3]
+        self.face[3] = self.face[1]
+        self.face[1] = self.face[2]
+        self.face[2] = self.face[4]
+        self.face[4] = tmp
     
 numbers = map(int, raw_input().split())
 if len(numbers) != 6: exit()
@@ -43,8 +60,6 @@ for c in s:
     elif c == 'N': d.move_north()
     else         : pass
 
-d.show_top()
-
-
+print d.top()
 
         
